@@ -26,8 +26,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="overflow-x-hidden">
-        <nav className="flex px-3 py-2 sticky top-0 left-0 bg-white z-10 justify-between items-center uppercase w-full">
+      <body>
+        <nav className="flex px-3 py-2 sticky top-0 left-0 bg-white z-10 justify-between items-center uppercase w-full dark:bg-gray-900">
           <div className="flex gap-3">
             <NavLink to="/">Home</NavLink>
             <NavLink to="/about">About</NavLink>

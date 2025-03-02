@@ -1,5 +1,4 @@
 import type { MetaFunction } from 'react-router';
-import { NavLink } from 'react-router-dom';
 import { useState, useEffect, useRef, useCallback } from 'react';
 
 export const meta: MetaFunction = () => {
@@ -261,7 +260,7 @@ export default function Index() {
   }, []);
 
   return (
-    <main className="absolute inset-0  w-full h-[100dvh]" onPointerDown={handlePointerDown}>
+    <main className="absolute inset-0 w-full h-[100dvh] overflow-hidden" onPointerDown={handlePointerDown}>
       {balls.map((ball) => (
         <div
           key={ball.id}
