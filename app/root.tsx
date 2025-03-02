@@ -26,10 +26,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
-        <nav>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/about">About</NavLink>
+      <body className="overflow-x-hidden">
+        <nav className="flex px-3 py-2 sticky top-0 left-0 bg-white z-10 justify-between items-center uppercase w-full">
+          <div className="flex gap-3">
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/about">About</NavLink>
+          </div>
+          <div className="text-4xl text-gray-800 dark:text-gray-100 ">Beckett</div>
         </nav>
         {children}
         <ScrollRestoration />
