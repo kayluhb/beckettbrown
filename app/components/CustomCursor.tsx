@@ -79,7 +79,7 @@ const CustomCursor = () => {
         element.removeEventListener('mouseleave', handleMouseLeave);
       }
     };
-  }, [cursorStyle, mouseDetected]);
+  }, [mouseDetected]);
 
   return (
     <div

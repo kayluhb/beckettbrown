@@ -2,7 +2,7 @@ import type { MetaFunction } from 'react-router';
 import { useState, useEffect, useRef, useCallback } from 'react';
 
 export const meta: MetaFunction = () => {
-  return [{ title: 'New React Router App' }, { name: 'description', content: 'Welcome to React Router!' }];
+  return [{ title: 'Beckett Brown' }, { name: 'description', content: `Welcome to Beckett's site` }];
 };
 
 interface Ball {
@@ -67,7 +67,10 @@ export default function Index() {
   useEffect(() => {
     try {
       // Create worker with error handling
-      workerRef.current = new Worker('/workers/collisionWorker.js');
+      // Use Vite's built-in worker import syntax
+      workerRef.current = new Worker(new URL('../workers/collisionWorker.ts', import.meta.url), {
+        type: 'module',
+      });
 
       // Set up worker message handler
       workerRef.current.onmessage = (e) => {
@@ -95,7 +98,7 @@ export default function Index() {
     const updateBalls = () => {
       const updateFn = (prevBalls: Ball[]) => {
         // Handle ball updates in the main thread
-        let updatedBalls = prevBalls
+        const updatedBalls = prevBalls
           .map((ball) => {
             const newVelocity = ball.velocity + gravity;
             let newY = ball.y + newVelocity;
@@ -150,9 +153,6 @@ export default function Index() {
 
           // Return current state, worker will update
           return prevBalls;
-        } else if (updatedBalls.length > 1) {
-          // Fallback to main thread collision detection if worker is not available
-          return handleCollisionsInMainThread(updatedBalls);
         }
 
         return updatedBalls;
@@ -264,7 +264,7 @@ export default function Index() {
       {balls.map((ball) => (
         <div
           key={ball.id}
-          className="absolute rounded-full"
+          className="absolute rounded-full pointer-events-none"
           style={{
             left: ball.x,
             top: ball.y,
@@ -276,6 +276,11 @@ export default function Index() {
           }}
         />
       ))}
+      {balls.length === 0 && (
+        <div className="flex flex-col items-center justify-center h-screen pointer-events-none">
+          <h1 className="text-4xl font-bold">Click Me</h1>
+        </div>
+      )}
     </main>
   );
 }
