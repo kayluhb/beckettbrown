@@ -15,7 +15,7 @@ export default {
             // `getPlatformProxy` used during development via Remix's
             // `cloudflareDevProxyVitePlugin`:
             // https://developers.cloudflare.com/workers/wrangler/api/#getplatformproxy
-            // @ts-ignore
+            // @ts-expect-error
             cf: request.cf,
             ctx: {
               waitUntil: ctx.waitUntil.bind(ctx),

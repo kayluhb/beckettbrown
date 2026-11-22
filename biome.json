@@ -1,9 +1,15 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+	"$schema": "https://biomejs.dev/schemas/2.6.8/schema.json",
 	"vcs": {
 		"enabled": true,
 		"clientKind": "git",
 		"useIgnoreFile": true
+	},
+	"files": {
+		"includes": [
+			"**",
+			"!**/.react-router"
+		]
 	},
 	"formatter": {
 		"enabled": true,
@@ -15,17 +21,22 @@
 		"lineWidth": 120,
 		"attributePosition": "auto",
 		"bracketSpacing": true,
-		"ignore": [
-			"**/pnpm-lock.yaml"
+		"includes": [
+			"**",
+			"!**/pnpm-lock.yaml"
 		]
 	},
-	"organizeImports": {
-		"enabled": true
+	"assist": {
+		"actions": {
+			"source": {
+				"organizeImports": "on"
+			}
+		}
 	},
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"recommended": true,
+			"preset": "recommended",
 			"suspicious": {
 				"useAwait": "error"
 			}
@@ -44,9 +55,9 @@
 			"bracketSpacing": true
 		}
 	},
-	"files": {
-		"ignore": [
-			".react-router/**"
-		]
+	"css": {
+		"parser": {
+			"tailwindDirectives": true
+		}
 	}
 }
