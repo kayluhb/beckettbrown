@@ -10,16 +10,9 @@ interface Ball {
   bounceCount: number;
 }
 
-// Define a grid cell for spatial partitioning
-interface GridCell {
-  x: number;
-  y: number;
-  balls: Ball[];
-}
-
 // Listen for messages from the main thread
 self.onmessage = (e) => {
-  const { balls, windowWidth, windowHeight, gridCellSize } = e.data;
+  const { balls, gridCellSize } = e.data;
 
   if (!balls || balls.length <= 1) {
     self.postMessage(balls || []);
